@@ -1,14 +1,15 @@
 ' ********** Copyright 2016 Roku Corp.  All Rights Reserved. ********** 
 
 sub Main()
-    showChannelSGScreen()
+    showHomeScreen()
 end sub
 
-sub showChannelSGScreen()
+sub showHomeScreen()
     screen = CreateObject("roSGScreen")
     m.port = CreateObject("roMessagePort")
     screen.setMessagePort(m.port)
     scene = screen.CreateScene("MainScene")
+        
     screen.show()
 
     while(true)
