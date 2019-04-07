@@ -27,29 +27,21 @@ end sub
 
 'Set your information here
 sub setContent()
-
-  'Renved a static image and video into the my main scene     
-  m.Image.uri="pkg:/images/Image-300x250.jpg"
-  'm.Image.posterDisplayMode = scaleToFit
-  ContentNode = CreateObject("roSGNode", "ContentNode")
-  ContentNode.streamFormat = "mp4"
-  ContentNode.url = "http://video.ted.com/talks/podcast/DanGilbert_2004_480.mp4"
-  ContentNode.ShortDescriptionLine1 = "short description line1?"
-  ContentNode.Description = "R. Kelly¡¯s explosive first TV appearance since being indicted, North Korea restarts a launch facility that could be used for ICBMs, and MIT¡¯s backflipping robot."
-  ContentNode.StarRating = 80
-  ContentNode.Length = 1972
-  ContentNode.Title = "R. Kelly¡¯s explosive interview, North Korea revives a rocket site: NBC News Briefly"
-  'ContentNode.subtitleConfig = {Trackname: "pkg:/source/xxxxx.srt" }
-  
-  m.Video.content = ContentNode
+    
+    'json = ParseJSON("https://dl.dropboxusercontent.com/s/rwkc3hntz1q9ph6/roku-front.json")
+    jsonAsString = ReadAsciiFile("pkg:/json/roku-front.json")
+    json = ParseJSON(jsonAsString)
+    for each video in json.entries
+       'print video.Title; video.Image; video.Url
+       m.Title.text = video.Title
+       m.Details.text = video.Url
+    end for
+ 
+  'm.Video.content = ContentNode
 
   'Change the buttons
   Buttons = ["Play","Exit"]
   m.ButtonGroup.buttons = Buttons
-
-  'Change the details
-  m.Title.text = "R. Kelly¡¯s explosive interview, North Korea revives a rocket site: NBC News Briefly"
-  m.Details.text = "R. Kelly¡¯s explosive first TV appearance since being indicted, North Korea restarts a launch facility that could be used for ICBMs, and MIT¡¯s backflipping robot."
 
 end sub
 
