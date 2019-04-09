@@ -18,7 +18,7 @@
 <script type="text/brightscript" uri="pkg:/components/MoreInfoOnFocusItem/MoreInfoOnFocusItem.brs"/>
 <children>
 	<Poster id="itemPoster">
-	    <Group id="itemOverlay" visible="false">
+	    <Group id="itemOverlay" visible="false">	    	
 	        <Rectangle id="overlayBG" color="0x00000040" >
 		    	<LayoutGroup id="overlayContent" layoutDirection="horizontal" vertAlignment="center" itemSpacings="8" >
 			        <Poster id="playIcon" loadSync="true" uri="pkg:/images/icon_play.png" />
@@ -27,6 +27,7 @@
 			</Rectangle>
 	    </Group>
 	</Poster>
+	<Label id = "itemLabel" font="font:SmallBoldSystemFont" horizAlign = "center" vertAlign = "center" color="0xDDDDDDFF"/>
 </children>
 
 </component>
