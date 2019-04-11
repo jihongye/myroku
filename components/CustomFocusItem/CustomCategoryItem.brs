@@ -11,11 +11,11 @@ function init()
 end function
 
 function itemContentChanged()
-    print "Category picture--------------"
-    print m.top.itemContent.HDPosterURL
+
     m.itemPoster.uri = m.top.itemContent.HDPosterURL
-    trackCount = m.top.itemContent.getChildCount()
-    print trackCount.ToStr()
+    
+    'trackCount = m.top.itemContent.getChildCount()
+    'print trackCount.ToStr()
     
     'Set the number of the videos in the playlist
     m.numTracks.text = "Play All"    

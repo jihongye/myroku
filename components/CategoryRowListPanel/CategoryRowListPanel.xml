@@ -3,7 +3,7 @@
 <component name="CategoryRowListPanel" extends="Group" >
 
 	<interface>
-		<field id="rowListContent" type="node" onchange="categoryListContentChanged" />		
+		<field id="rowListContent" type="node" onchange="categoryListContentChanged" />
         <field id="focusedContent"  type="node" />
 	</interface> 
 
@@ -11,7 +11,7 @@
 
 	<children>
 		<LayoutGroup id="rowGroup">
-			<Rectangle id="overlayBG" color="0x00000040" height="70"  >
+			<Rectangle id="overlayBG" color="0x00000040" height="70" focusable = "false" >
 		    	<LayoutGroup id="overlayContent" layoutDirection="horizontal" vertAlignment="center" itemSpacings="20" >
 			        <Poster id="hangoverImage" loadSync="true" uri="pkg:/images/Overhang_BackgroundSlice_SD.png" />
 			        <Label id="hangoverText" font="font:LargeBoldSystemFont" text="MY ROKU CHANNEL" color="0xDDDDDDFF"/>
