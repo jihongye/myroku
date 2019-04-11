@@ -11,14 +11,14 @@ end function
 'Read data from JSON and store it to list data structure
 function readDataFromJSON(fileName as String) as object
     'get data from source
-    searchRequest = CreateObject("roUrlTransfer")
-    searchRequest.SetURL(fileName)
-    searchRequest.SetCertificatesFile("pkg:/certs/dropbox.crt")
-    jsonAsString = searchRequest.GetToString()
+    request = CreateObject("roUrlTransfer")
+    request.SetURL(fileName)
+    request.SetCertificatesFile("pkg:/certs/dropbox.crt")
+    jsonAsString = request.GetToString()
     
     'Parse JSON string
     json = ParseJSON(jsonAsString)
-    print "parse finished"
+    
     contentNode = createObject("RoSGNode","ContentNode")
     rowNode = contentNode.createChild("ContentNode")
     rowNode.title = "Themed News"
@@ -36,14 +36,16 @@ function readDataFromJSON(fileName as String) as object
             itemCategory.SDPosterURL = "pkg:/images/Pic_Backup.png" 
             itemCategory.HDPosterURL = "pkg:/images/Pic_Backup.png"
         end if
-
+        
+        listVideo = itemCategory.createChild("ContentNode")
+        listVideo.title = playList.title
         for each video in playList.entries
-            itemVideo = itemCategory.createChild("ContentNode")
+            itemVideo = listVideo.createChild("ContentNode")
             itemVideo.title = video.title                        
-            itemVideo.ReleaseDate = video.ReleaseDate
-            itemVideo.Description = video.Description
-            itemVideo.Url = video.Url            
-            itemVideo.HDPosterUrl = video.HDPosterUrl            
+            itemVideo.ReleaseDate = video.published
+            itemVideo.Description = video.summary
+            itemVideo.Url = video.contentSrc            
+            itemVideo.HDPosterUrl = video.mainArtUrl            
         end for
 
     end for

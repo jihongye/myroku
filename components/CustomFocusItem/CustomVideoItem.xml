@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+
+<component name="CustomVideoItem" extends="Group">
+
+<interface>
+  <field id="width" type="float" onChange="widthChanged"/> 
+  <field id="height" type="float" onChange="heightChanged"/> 
+  <field id="itemContent" type="node" onChange="videoItemContentChanged"/> 
+</interface>
+
+<script type="text/brightscript" uri="pkg:/components/CustomFocusItem/CustomVideoItem.brs"/>
+
+<children>
+	<Poster id="videoPoster" loadDisplayMode="scaleToFill" >
+        <Poster id="playIcon" loadSync="true" uri="pkg:/images/icon_play.png" />    
+	</Poster>
+	<Label id = "videoItemLabel" font="font:SmallBoldSystemFont" horizAlign = "left" vertAlign = "center" color="0xDDDDDDFF"/>
+</children>
+
+</component>
+

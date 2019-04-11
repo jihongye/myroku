@@ -11,10 +11,14 @@ function init()
 end function
 
 function itemContentChanged()
+    print "Category picture--------------"
+    print m.top.itemContent.HDPosterURL
     m.itemPoster.uri = m.top.itemContent.HDPosterURL
     trackCount = m.top.itemContent.getChildCount()
-
-    m.numTracks.text = trackCount.tostr() + " videos"    
+    print trackCount.ToStr()
+    
+    'Set the number of the videos in the playlist
+    m.numTracks.text = "Play All"    
     m.itemLabel.text = m.top.itemContent.title
 
     updateLayout()
@@ -41,6 +45,8 @@ function updateLayout()
         'The following is for showing videos quantityp in playlist
         m.itemPoster.width  = topWidth 
         m.itemPoster.height = topHeight * 0.8
+        m.itemPoster.loadWidth = m.itemPoster.width
+        m.itemPoster.loadHeight = m.itemPoster.height
         m.itemPoster.translation = [0, 0]
         
         m.overlayBG.width  = topWidth

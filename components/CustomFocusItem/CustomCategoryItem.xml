@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 
-<component name="MoreInfoOnFocusItem" extends="Group">
+<component name="CustomCategoryItem" extends="Group">
 
 <interface>
   <field id="width" type="float" onChange="widthChanged"/> 
@@ -12,10 +12,9 @@
   <field id="rowFocusPercent" type="float" />
   <field id="rowHasFocus" type="bool" />
   <field id="rowListHasFocus" type="bool" onChange="focusPercentChanged" />
-  <field id="mupItem" type="bool" />
 </interface>
 
-<script type="text/brightscript" uri="pkg:/components/MoreInfoOnFocusItem/MoreInfoOnFocusItem.brs"/>
+<script type="text/brightscript" uri="pkg:/components/CustomFocusItem/CustomCategoryItem.brs"/>
 <children>
 	<Poster id="itemPoster">
 	    <Group id="itemOverlay" visible="false">	    	

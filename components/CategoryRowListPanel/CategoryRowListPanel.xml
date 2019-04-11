@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 
-<component name="CategoryRowListPanel" extends="Panel" >
+<component name="CategoryRowListPanel" extends="Group" >
 
 	<interface>
-		<field id="rowListContent" type="node" onchange="rowListContentChanged" />
-		<field id="videoListContent" type="node" onchange="rowListContentChanged" />
+		<field id="rowListContent" type="node" onchange="categoryListContentChanged" />		
+        <field id="focusedContent"  type="node" />
 	</interface> 
 
 	<script type="text/brightscript"  uri="pkg:/components/CategoryRowListPanel/CategoryRowListPanel.brs"/>
 
 	<children>
-		<RowList id="categoryRowList"/>
-		<RowList id="videoRowList" visible="false"/>
+		<LayoutGroup id="rowGroup">
+			<Rectangle id="overlayBG" color="0x00000040" height="70"  >
+		    	<LayoutGroup id="overlayContent" layoutDirection="horizontal" vertAlignment="center" itemSpacings="20" >
+			        <Poster id="hangoverImage" loadSync="true" uri="pkg:/images/Overhang_BackgroundSlice_SD.png" />
+			        <Label id="hangoverText" font="font:LargeBoldSystemFont" text="MY ROKU CHANNEL" color="0xDDDDDDFF"/>
+	            </LayoutGroup>
+			</Rectangle>
+
+			<RowList id="categoryRowList"
+					 itemComponentName = "CustomCategoryItem"
+					 numRows = "1"
+					 rowItemSpacing = "[ [20, 20] ]"	
+					 rowLabelOffset = "[ [0, 20] ]"				 
+					 focusXOffset = "0"
+					 showRowLabel   = "true"
+					 showRowCounter = "true"
+					 itemSize = "[ 1880, 500 ]"
+					 rowFocusAnimationStyle = "fixedFocusWrap"/>
+			
+			<RowList id="videoRowList"
+					 itemComponentName = "CustomVideoItem"					 
+					 numRows = "1"
+					 rowItemSpacing = "[ [20, 20] ]"	
+					 rowLabelOffset = "[ [0, 20] ]"				 
+					 focusXOffset = "0"
+					 showRowLabel   = "true"
+					 showRowCounter = "true"
+					 itemSize = "[ 1880, 300 ]"
+					 rowFocusAnimationStyle = "fixedFocusWrap"/>		
+		</LayoutGroup>
 	</children>
 
 </component>
