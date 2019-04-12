@@ -10,6 +10,11 @@
 	<script type="text/brightscript"  uri="pkg:/components/CategoryRowListPanel/CategoryRowListPanel.brs"/>
 
 	<children>
+		<Video id="video"
+			enableUI = "true"
+			translation = "[0,0]"
+		/>	
+		
 		<LayoutGroup id="rowGroup">
 			<Rectangle id="overlayBG" color="0x00000040" height="70" focusable = "false" >
 		    	<LayoutGroup id="overlayContent" layoutDirection="horizontal" vertAlignment="center" itemSpacings="20" >
@@ -26,20 +31,40 @@
 					 focusXOffset = "0"
 					 showRowLabel   = "true"
 					 showRowCounter = "true"
-					 itemSize = "[ 1880, 500 ]"
+					 itemSize = "[ 1880, 500 ]"	
+					 rowItemSize = "[ [350, 400] ]"				 
 					 rowFocusAnimationStyle = "fixedFocusWrap"/>
-			
-			<RowList id="videoRowList"
-					 itemComponentName = "CustomVideoItem"					 
-					 numRows = "1"
-					 rowItemSpacing = "[ [20, 20] ]"	
-					 rowLabelOffset = "[ [0, 20] ]"				 
-					 focusXOffset = "0"
-					 showRowLabel   = "true"
-					 showRowCounter = "true"
-					 itemSize = "[ 1880, 300 ]"
-					 rowFocusAnimationStyle = "fixedFocusWrap"/>		
+					 
+			<Rectangle
+				id = "BottomBar"
+				translation = "[0,1080]"
+				width = "1920"
+				height = "350"
+				color = "0x000000AA"
+				opacity = "0.7">
+				<RowList id="videoRowList"
+						 itemComponentName = "CustomVideoItem"					 
+						 numRows = "1"
+						 rowItemSpacing = "[ [20, 20] ]"	
+						 rowLabelOffset = "[ [0, 20] ]"				 
+						 focusXOffset = "0"
+						 showRowLabel   = "true"
+						 showRowCounter = "true"
+						 itemSize = "[ 1880, 280 ]"	
+						 rowItemSize = "[ [250, 300] ]" 					 				 
+						 rowFocusAnimationStyle = "fixedFocusWrap"/>
+			</Rectangle>	
 		</LayoutGroup>
+		
+		<Label
+			id = "Hint"
+			color = "FF0000FF"
+			height = "50"
+			text = "Press UP/DOWN for Channels"
+			font = "font:SmallBoldSystemFont"
+			translation = "[1200,50]"
+		/>
+		
 	</children>
 
 </component>

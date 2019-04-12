@@ -17,14 +17,3 @@ function setCategories()
         m.categoryRowListPanel.rowListContent = m.readerTask.content                
     end if
 end function
-
-function onKeyEvent(key as String, press as Boolean) as Boolean
-    if press then
-        if key = "back"
-            print "pressed back"
-
-        end if
-    end if
-
-      return false
-end function

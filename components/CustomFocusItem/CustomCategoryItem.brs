@@ -56,8 +56,7 @@ function updateLayout()
         
         m.itemLabel.width = topWidth
         m.itemLabel.height = topHeight - m.itemPoster.height
-        m.itemLabel.translation = [0, m.itemPoster.height]
-        
+        m.itemLabel.translation = [0, m.itemPoster.height]        
     end if
 end function
 

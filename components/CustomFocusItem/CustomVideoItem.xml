@@ -6,15 +6,16 @@
   <field id="width" type="float" onChange="widthChanged"/> 
   <field id="height" type="float" onChange="heightChanged"/> 
   <field id="itemContent" type="node" onChange="videoItemContentChanged"/> 
+  <field id="focusPercent" type="float" onChange="focusPercentChanged"/> 
 </interface>
 
 <script type="text/brightscript" uri="pkg:/components/CustomFocusItem/CustomVideoItem.brs"/>
 
 <children>
 	<Poster id="videoPoster" loadDisplayMode="scaleToFill" >
-        <Poster id="playIcon" loadSync="true" uri="pkg:/images/icon_play.png" />    
+      	<Poster id="playIcon" loadSync="true" uri="pkg:/images/icon_play.png" />    
 	</Poster>
-	<Label id = "videoItemLabel" font="font:SmallBoldSystemFont" horizAlign = "left" vertAlign = "center" color="0xDDDDDDFF"/>
+	<Label id = "videoItemLabel" font="font:SmallBoldSystemFont" horizAlign = "left" vertAlign = "center" color="0xFFDDDDFF"/>
 </children>
 
 </component>

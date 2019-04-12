@@ -4,9 +4,7 @@
 
 <interface>
   <field id="width" type="float" onChange="widthChanged"/> 
-  <field id="height" type="float" onChange="heightChanged"/> 
-  <field id="index" type="int" />
-  <field id="rowIndex" type="int" />
+  <field id="height" type="float" onChange="heightChanged"/>   
   <field id="itemContent" type="node" onChange="itemContentChanged"/> 
   <field id="focusPercent" type="float" onChange="focusPercentChanged"/> 
   <field id="rowFocusPercent" type="float" />

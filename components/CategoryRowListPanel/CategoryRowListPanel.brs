@@ -4,71 +4,61 @@ function init()
     m.top.focusable = true
     
     m.rowCategoryList = m.top.findNode("categoryRowList")
+    
+    'To control focus that back from video playback
     m.rowCategoryList.setFocus(true)  
     m.lastFocus = m.rowCategoryList
     
     m.c = m.top.findNode("rowGroup")
+    m.BottomBar = m.top.findNode("BottomBar")
+    
     m.rowVideoList = m.top.findNode("videoRowList")
     m.rowVideoList.observeField("rowItemSelected", "videoItemSelected")
     
-    'm.top.observeField("focusedChild", "focusChanged")
     m.rowGroup = m.top.findNode("rowGroup")
     m.rowGroup.observeField("visible", "visibleChanged")
+    
+    m.video = m.top.findNode("video")
+    m.video.visible = false
+    m.video.observeField("state", "OnVideoPlayerStateChange")
+    
+    m.Hint = m.top.findNode("Hint")
 end function
-
-'function focusChanged()
-'    if m.top.isInFocusChain()
-'        print "in FocusChain "
-'        if not m.rowCategoryList.hasFocus()
-'            print "rowCategoryList got focus " 
-'            m.rowCategoryList.setFocus(true)        
-'        end if
-'    end if
-'end function
 
 function categoryListContentChanged()
     print "in categoryListContentChanged()"
     
-    m.rowCategoryList.rowItemSize = [ [350, 400] ]
-
     m.rowCategoryList.content = m.top.rowListContent
-    
+        
     m.rowCategoryList.observeField("rowItemSelected", "categoryItemSelected")
     m.rowCategoryList.observeField("rowItemFocused",  "categoryItemFocused")
-    
-    'm.rowCategoryList.visible = true
-    'm.rowCategoryList.setFocus(true)
 end function
 
 function visibleChanged()
-    print "visible changed - " ; m.lastFocus.id 
+    print "visible changed to - " ; m.lastFocus.id 
     m.lastFocus.setFocus(true)
 end function
 
-function categoryItemFocused()
-    print "in categoryItemFocused()"
-    'print "item "; m.rowCategoryList.rowItemFocused[1]; " in row "; m.rowCategoryList.rowItemFocused[0]; " was focused"
+function categoryItemFocused()    
+    print "category item "; m.rowCategoryList.rowItemFocused[1]; " in row "; m.rowCategoryList.rowItemFocused[0]; " was focused"
 
     'Handle the focused content
     m.focusedContent = m.top.rowListContent.getChild(0).getChild(m.rowCategoryList.rowItemFocused[1])
     
+    'call the function to set the video list content
     if (m.focusedContent <> invalid)     
         videoListContentChanged()
     end if
         
 end function
 
-function categoryItemSelected()
-    print "in categoryItemSelected()"
-    'print "item "; m.rowCategoryList.rowItemSelected[1]; " in row "; m.rowCategoryList.rowItemSelected[0]; " was selected"
+function categoryItemSelected()    
+    print "category item "; m.rowCategoryList.rowItemSelected[1]; " in row "; m.rowCategoryList.rowItemSelected[0]; " was selected"
 
     'Handle the selected content
     selectedContent = m.top.rowListContent.getChild(0).getChild(m.rowCategoryList.rowItemFocused[1])
     m.rowGroup.visible = false
-    
-    'Dynamically create the video node since key press will remove the video node
-    m.video = m.top.createChild("Video")
-        
+            
     'init of video player and start playback
     m.video.content = selectedContent.getChild(0)
     m.video.contentIsPlaylist = true
@@ -78,44 +68,25 @@ function categoryItemSelected()
     
     m.lastFocus = m.rowCategoryList
     
-    m.video.observeField("state", "OnVideoPlayerStateChange")
 end function
 
 function videoListContentChanged()
     print "in videoListContentChanged"
-    m.rowVideoList.rowItemSize = [ [250, 300] ]
-        
-    'print rowVideoContent
-    m.rowVideoList.content = m.focusedContent    
-    'm.rowVideoList.visible = true
-    
-    'm.rowVideoList.observeField("rowItemFocused", "videoItemFocused")
-    'm.rowVideoList.observeField("rowItemSelected", "videoItemSelected")
-        
+            
+    'set rowVideo Content    
+    m.rowVideoList.content = m.focusedContent               
 end function
 
-'function videoItemFocused()
-'    print "in videoItemFocused()"
-    'print "item "; m.rowVideoList.rowItemFocused[1]; " in row "; m.rowVideoList.rowItemFocused[0]; " was focused"
-    'm.rowVideoList.setFocus(true)
-'end function
-
 function videoItemSelected()
-    print "in videoItemSelected()"
-    'print "item "; m.rowVideoList.rowItemSelected[1]; " in row "; m.rowVideoList.rowItemSelected[0]; " was selected"
-    
-    'm.rowVideoList.setFocus(true)
+    print "video item "; m.rowVideoList.rowItemSelected[1]; " in row "; m.rowVideoList.rowItemSelected[0]; " was selected"
 
     'Handle the selected content
     selectedContent = m.focusedContent.getChild(m.rowVideoList.rowItemSelected[0]).getChild(m.rowVideoList.rowItemFocused[1])
     m.rowGroup.visible = false
-    
-    'Dynamically create the video node since key press will remove the video node
-    m.video = m.top.createChild("Video")
-    
+       
     m.lastFocus = m.rowVideoList
         
-    'init of video player and start playback
+    'set video content and start playback single video
     m.video.content = selectedContent
     m.video.control = "play"
     m.video.visible = true
@@ -123,33 +94,34 @@ function videoItemSelected()
 
 end function
 
+function setVisible(isShowVisible as Boolean, isHideCategory as Boolean)
+    m.rowGroup.visible = isShowVisible
+    m.rowVideoList.visible = isShowVisible
+    m.rowCategoryList.visible = isHideCategory
+end function
+
 function onKeyEvent(key as String, press as Boolean) as Boolean
-    if press then
-        if key = "down"
-            print "pressed down"
-            if (m.rowCategoryList.hasFocus())
+    if press then      
+        if key = "up" OR key = "down"
+            print "pressed up"
+            if (m.video.visible = true)                
+                setVisible(true, false)                
+                m.rowVideoList.setFocus(true)
+            else if (m.rowCategoryList.hasFocus())
                 m.rowVideoList.setFocus(true)   
                 return true
-            end if
-        end if
-        
-        if key = "up"
-            print "pressed down"
-            if (m.rowVideoList.hasFocus())
+            else if (m.rowVideoList.hasFocus())
                 m.rowCategoryList.setFocus(true) 
                 return true
             end if
-        end if
-        
-        if key = "back"
+        else if key = "back"
             print "pressed back"
-            if (m.video <> invalid)
+            if (m.video.visible = true)
                 print "Remove video"
-                m.top.removeChild(m.video)
-                m.video = invalid
+                m.video.control = "stop"
+                m.video.visible = false
                 
-                m.rowGroup.visible = true
-
+                setVisible(true, true)
                 return true
             end if
         end if
@@ -159,12 +131,14 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
 end function
 
 function OnVideoPlayerStateChange()
-    if m.video.state = "error" OR m.video.state = "finished"
-        'hide vide player in case of error
-        m.video.control = "stop"
-        m.video.visible = false
-        
-        m.rowGroup.visible = true
-        m.rowCategoryList.setFocus(true)
+    if m.video.visible = true
+        if m.video.state = "error" OR m.video.state = "finished"
+            print "video state is:" ; m.video.state
+            'hide vide player in case of error
+            m.video.control = "stop"
+            m.video.visible = false
+            
+            m.rowGroup.visible = true            
+        end if    
     end if
 end function
