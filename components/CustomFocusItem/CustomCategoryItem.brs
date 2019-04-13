@@ -4,7 +4,7 @@ function init()
     m.overlayContent = m.top.findNode("overlayContent")
     m.overlayBG   = m.top.findNode("overlayBG")
     m.playIcon    = m.top.findNode("playIcon")
-    m.numTracks   = m.top.findNode("numTracks")
+    m.labelPlayAll   = m.top.findNode("labelPlayAll")
     
     m.itemLabel = m.top.findNode("itemLabel")
     
@@ -14,11 +14,8 @@ function itemContentChanged()
 
     m.itemPoster.uri = m.top.itemContent.HDPosterURL
     
-    'trackCount = m.top.itemContent.getChildCount()
-    'print trackCount.ToStr()
-    
     'Set the number of the videos in the playlist
-    m.numTracks.text = "Play All"    
+    m.labelPlayAll.text = "Play All"    
     m.itemLabel.text = m.top.itemContent.title
 
     updateLayout()

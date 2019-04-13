@@ -103,7 +103,7 @@ end function
 function onKeyEvent(key as String, press as Boolean) as Boolean
     if press then      
         if key = "up" OR key = "down"
-            print "pressed up"
+
             if (m.video.visible = true)                
                 setVisible(true, false)                
                 m.rowVideoList.setFocus(true)
@@ -114,16 +114,18 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
                 m.rowCategoryList.setFocus(true) 
                 return true
             end if
+            
         else if key = "back"
-            print "pressed back"
+        
             if (m.video.visible = true)
-                print "Remove video"
+                
                 m.video.control = "stop"
                 m.video.visible = false
                 
                 setVisible(true, true)
                 return true
             end if
+            
         end if
     end if
 

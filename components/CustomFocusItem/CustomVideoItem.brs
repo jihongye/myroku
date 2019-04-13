@@ -7,7 +7,7 @@ end function
 
 function videoItemContentChanged()
     m.videoPoster.uri = m.top.itemContent.HDPosterURL
-    m.videoItemLabel.text = "TEST" 'm.top.itemContent.duration
+    m.videoItemLabel.text = m.top.itemContent.title
     updateLayout()
 end function
 
@@ -27,16 +27,16 @@ function updateLayout()
         
         'The following is for showing play icon for videos 
         m.videoPoster.width  = topWidth 
-        m.videoPoster.height = topHeight * 0.8
+        m.videoPoster.height = topHeight - 100
         m.videoPoster.loadWidth = m.videoPoster.width
-        m.videoPoster.loadHeight = m.videoPoster.height
-        
+        m.videoPoster.loadHeight = m.videoPoster.height        
         m.videoPoster.translation = [0, 0]
    
-        m.playIcon.translation = [(m.videoPoster.width/2 - m.playIcon.width/2), (m.videoPoster.height/2 - m.playIcon.height/2)]
+        'm.playIcon.translation = [(m.videoPoster.width/2 - m.playIcon.width/2), (m.videoPoster.height/2 - m.playIcon.height/2)]
+        m.playIcon.translation = [m.videoPoster.width / 2 - 20, m.videoPoster.height / 2 - 20]
         
         m.videoItemLabel.width = topWidth
-        m.videoItemLabel.height = topHeight - m.videoPoster.height
+        m.videoItemLabel.height = 100
         m.videoItemLabel.translation = [0, m.videoPoster.height]
         
     end if

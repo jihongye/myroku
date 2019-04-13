@@ -19,7 +19,7 @@
 	        <Rectangle id="overlayBG" color="0x00000040" >
 		    	<LayoutGroup id="overlayContent" layoutDirection="horizontal" vertAlignment="center" itemSpacings="8" >
 			        <Poster id="playIcon" loadSync="true" uri="pkg:/images/icon_play.png" />
-			        <Label id="numTracks" font="font:SmallSystemFont" text="SomeText" color="0xDDDDDDFF"/>
+			        <Label id="labelPlayAll" font="font:SmallSystemFont" text="Play All" color="0xDDDDDDFF"/>
 	            </LayoutGroup>
 			</Rectangle>
 	    </Group>

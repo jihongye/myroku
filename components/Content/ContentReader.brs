@@ -44,7 +44,7 @@ function readDataFromJSON(fileName as String) as object
             itemVideo.title = video.title                        
             itemVideo.ReleaseDate = video.published
             itemVideo.Description = video.summary
-            itemVideo.duration = video.videoDuration
+            itemVideo.duration = video.videoDuration            
             itemVideo.Url = video.contentSrc            
             itemVideo.HDPosterUrl = video.mainArtUrl            
         end for
