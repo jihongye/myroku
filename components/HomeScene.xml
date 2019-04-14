@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="HomeScene" extends="Scene">
+	<interface>
+		<field id="rowListContent" type="node" onchange="onRowCategoryContentChanged" />
+        <field id="focusedContent"  type="node" />
+	</interface> 
+	
+    <script type="text/brightscript" uri="pkg:/components/HomeScene.brs" />
+    
+    <children>
+			<Video id="video"
+				enableUI = "true"
+				translation = "[0,0]"
+			/>	
+			
+			<LayoutGroup id="rowGroup" >
+				<Rectangle id="overlayBG" color="0x00000040" height="50" focusable = "false" >
+			    	<LayoutGroup id="overlayContent" layoutDirection="horizontal" vertAlignment="center" itemSpacings="20" >
+				        <Poster id="hangoverImage" loadSync="true" uri="pkg:/images/Overhang_BackgroundSlice_SD.png" />
+				        <Label id="hangoverText" font="font:LargeBoldSystemFont" text="MY ROKU CHANNEL" color="0xDDDDDDFF" vertAlign="bottom"/>
+		            </LayoutGroup>
+				</Rectangle>
+	
+				<RowList id="categoryRowList"
+						 itemComponentName = "CustomCategoryItem"
+						 numRows = "1"
+						 rowItemSpacing = "[ [20, 20] ]"	
+						 rowLabelOffset = "[ [0, 20] ]"				 
+						 focusXOffset = "0"
+						 showRowLabel   = "true"
+						 showRowCounter = "true"
+						 itemSize = "[ 1250, 350 ]"	
+						 rowItemSize = "[ [300, 300] ]"				 
+						 rowFocusAnimationStyle = "fixedFocusWrap"/>
+						 
+				<Rectangle
+					id = "BottomBar"
+					width = "1280"	
+					height = "270"	
+					translation = "[0,980]"	
+					color = "0x000000AA"
+					opacity = "1.0">
+					<RowList id="videoRowList"
+							 itemComponentName = "CustomVideoItem"					 
+							 numRows = "1"
+							 rowItemSpacing = "[ [20, 20] ]"	
+							 rowLabelOffset = "[ [0, 20] ]"				 
+							 focusXOffset = "0"
+							 showRowLabel   = "true"
+							 showRowCounter = "true"
+							 itemSize = "[ 1250, 240 ]"	
+							 rowItemSize = "[ [180, 180] ]" 					 				 
+							 rowFocusAnimationStyle = "fixedFocusWrap"/>
+				</Rectangle>	
+			</LayoutGroup>
+			
+			<Label
+				id = "Hint"
+				color = "0xFF0000FF"
+				height = "50"
+				text = "Press UP/DOWN for Channels"
+				font = "font:SmallBoldSystemFont"
+				translation = "[900,50]"
+			/>
+
+	</children>
+</component>
