@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="utf-8" ?> 
-
-<component name="ContentReader" extends="Task" >
-
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="FeedReader" extends="Task">
 	<interface>
 	    <field id="content" type="node" />
 	</interface> 
-
-	<script type="text/brightscript" uri="pkg:/components/content/ContentReader.brs"/>
-
+	
+	<script type="text/brightscript" uri="pkg:/components/FeedReader/FeedReader.brs" />
+	
 	<script type="text/brightscript">
 	    <![CDATA[function init()
 	        m.top.functionName = "readMetaData"

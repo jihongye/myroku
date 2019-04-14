@@ -15,7 +15,7 @@
 	<Poster id="videoPoster" loadDisplayMode="scaleToFill" >
       	<Poster id="playIcon" loadSync="true" uri="pkg:/images/icon_play.png" />    
 	</Poster>
-	<Label id = "videoItemLabel" font="font:SmallestSystemFont" wrap = "true" horizAlign = "left" vertAlign = "bottom" color="0xDDDDDDFF"/>
+	<Label id = "labelVideoTitle" font="font:SmallestSystemFont" wrap = "true" horizAlign = "left" vertAlign = "bottom" color="0xDDDDDDFF"/>
 </children>
 
 </component>

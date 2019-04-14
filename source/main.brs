@@ -1,19 +1,18 @@
-sub Main()    
-    showHomeScreen()
+
+sub Main()
+    showMainScreen()
 end sub
 
-sub showHomeScreen()
-    print "in showCategoryScreen"
-    
+sub showMainScreen()
     screen = CreateObject("roSGScreen")
     m.port = CreateObject("roMessagePort")
     screen.setMessagePort(m.port)
-    scene = screen.CreateScene("MainScene")
+    scene = screen.CreateScene("HomeScene")
     screen.show()
 
     while(true)
         msg = wait(0, m.port)
-        msgType = type(msg)
+    msgType = type(msg)
         if msgType = "roSGScreenEvent"
             if msg.isScreenClosed() then return
         end if
